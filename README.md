@@ -15,7 +15,7 @@ curl http://localhost:8080/rm?host=example.com
 ## Lookup
 
 ```sh
-nslookup example.com 127.0.0.1
+dig A example.com @127.0.0.1
 ```
 
 ## Todo
