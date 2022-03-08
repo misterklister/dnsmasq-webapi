@@ -11,32 +11,28 @@
             exec($this->settings["dnsmasq_update_cmd"]);
         }
 
-        private function insert(String $host, String $ip) {
-            $line = "address=/" . $host. "/" . $ip . "\n";
-            file_put_contents($this->settings["hosts_file"], $line, FILE_APPEND);
-        }
-
         public function add(String $query) {
             parse_str($query, $parts);
 
-            $this->insert($parts["host"], $parts["ip"]);
-            $this->apply();
-        }
+            $record = $parts["record"];
+            $data = $parts["data"];
+            $domain = $parts["domain"];
+            $priority = isset($parts["priority"]) ? $parts["priority"] : "";
 
-        public function rm(String $query) {
-
-            parse_str($query, $parts);
-
-            $lines = [];
-            $entries = file($this->settings["hosts_file"]);
-            foreach ($entries as $k => $v) {
-                $p = explode("/", $v);
-                if ($p[1] === $parts["host"]) continue;
-                $lines[] = $v;
+            switch ($record) {
+                case $record === "A":
+                    $line = "address=/" . $domain. "/" . $data;
+                    break;
+                case $record === "MX":
+                    $line = "mx-host=" . $domain. "," . $data . "," . $priority;
+                    break;
+                case $record === "TXT":
+                    $line = "txt-record=" . $domain. "," . $data;
+                    break;
             }
-            $str = implode("\n", $lines);
-            file_put_contents($this->settings["hosts_file"], $str);
-            
+
+            file_put_contents($this->settings["hosts_file"], $line . "\n", FILE_APPEND);
+
             $this->apply();
         }
     }

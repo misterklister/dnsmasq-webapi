@@ -15,8 +15,5 @@
         case "/add":
             $dnsrecord->add($query);
             break;
-        case "/rm":
-            $dnsrecord->rm($query);
-            break;
     }
 ?>

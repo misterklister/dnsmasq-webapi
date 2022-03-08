@@ -2,16 +2,22 @@
 
 Imagine this being deployed at **mydnsserver.com**
 
-## Add a DNS record
+## Add an A record
 
 ```sh
-curl http://mydnsserver.com:8080/add?host=example.com&ip=192.168.10.5
+curl http://mydnsserver.com:8080/add?record=A&domain=example.com&data=192.168.10.5
 ```
 
-## Remove a DNS record
+## Add an MX record
 
 ```sh
-curl http://mydnsserver.com:8080/rm?host=example.com
+curl http://mydnsserver.com:8080/add?record=MX&domain=example.com&data=some.mailserver.com&priority=10
+```
+
+## Add a TXT record
+
+```sh
+curl http://mydnsserver.com:8080/add?record=TXT&domain=example.com&data=foo
 ```
 
 ## Lookup
@@ -20,8 +26,16 @@ curl http://mydnsserver.com:8080/rm?host=example.com
 dig A example.com @mydnsserver.com
 ```
 
+```sh
+dig MX example.com @mydnsserver.com
+```
+
+```sh
+dig TXT example.com @mydnsserver.com
+```
+
 ## Todo
 
-- Record types (not just A records)
 - Access keys
 - A shitton of refactoring
+- Being able to delete records
