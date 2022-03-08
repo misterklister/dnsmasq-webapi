@@ -17,3 +17,8 @@ curl http://localhost:8080/rm?host=example.com
 ```sh
 nslookup example.com 127.0.0.1
 ```
+
+## Todo
+
+- Record types (not just A records)
+- Access keys
