@@ -23,6 +23,9 @@
                 case $record === "A":
                     $line = "address=/" . $domain. "/" . $data;
                     break;
+                case $record === "FORWARD":
+                    $line = "server=/" . $domain. "/" . $data;
+                    break;
                 case $record === "MX":
                     $line = "mx-host=" . $domain. "," . $data . "," . $priority;
                     break;

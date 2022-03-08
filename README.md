@@ -20,6 +20,14 @@ curl http://mydnsserver.com:8080/add?record=MX&domain=example.com&data=some.mail
 curl http://mydnsserver.com:8080/add?record=TXT&domain=example.com&data=foo
 ```
 
+## Forward a lookup to a different server
+
+Example: forwarding facebook.com lookups to google's DNS with a pseudo-record called "FORWARD"
+
+```sh
+curl http://mydnsserver.com:8080/add?record=FORWARD&domain=facebook.com&data=8.8.8.8
+```
+
 ## Lookup
 
 ```sh
