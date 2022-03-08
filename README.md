@@ -28,6 +28,8 @@ Example: forwarding facebook.com lookups to google's DNS with a pseudo-record ca
 curl http://mydnsserver.com:8080/add?record=FORWARD&domain=facebook.com&data=8.8.8.8
 ```
 
+mydnsserver.com will now be able to respond to facebook.com lookups
+
 ## Lookup
 
 ```sh
