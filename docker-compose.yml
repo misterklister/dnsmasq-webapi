@@ -1,0 +1,14 @@
+version: '2'
+services:
+  dns:
+    build:
+      context: .
+    restart: always
+    volumes:
+      - ./vol/dnsmasq.d/:/etc/dnsmasq.d/
+      - ./vol/webapi/:/var/www/html
+    ports:
+      - "53:53/udp"
+      - "8080:80/tcp"
+    cap_add:
+      - NET_ADMIN
